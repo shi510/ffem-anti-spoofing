@@ -36,9 +36,7 @@ def build_backbone_model(config):
     """
 
     if os.path.exists(config['saved_model']):
-        net = tf.keras.models.load_model(
-            config['saved_model'],
-            custom_objects=utils.keras_model_custom_obj)
+        net = tf.keras.models.load_model(config['saved_model'])
         if os.path.isdir(config['saved_model']):
             net.load_weights(config['saved_model']+'/variables/variables')
         if len(net.layers) is not 2 and '.h5' not in config['saved_model']:

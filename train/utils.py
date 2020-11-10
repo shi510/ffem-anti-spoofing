@@ -9,8 +9,6 @@ import numpy as np
 import tensorflow as tf
 from tensorboard.plugins import projector
 
-import net_arch.loss_fn.default_loss as default_loss
-
 
 def open_config_file(file_path):
     with open(file_path, 'r') as f:
@@ -133,12 +131,3 @@ def visualize_embeddings(config, identities=50):
     embedding.metadata_path = 'metadata.tsv'
     projector.visualize_embeddings(log_dir, config)
 
-
-keras_model_custom_obj = {
-    'softmax_xent_loss_wrap':
-        default_loss.softmax_xent_loss_wrap,
-    'original_triplet_loss':
-        get_loss('triplet_loss.original_triplet_loss'),
-    'adversarial_triplet_loss':
-        get_loss('triplet_loss.adversarial_triplet_loss'),
-}
